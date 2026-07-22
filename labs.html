@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A2BSEC | Labs & Research</title>
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --primary: #00e5ff;
+            --primary-glow: rgba(0, 229, 255, 0.6);
+            --ai-accent: #d946ef;
+            --text-main: #f8fafc;
+            --font-main: 'Inter', 'Segoe UI', sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        /* Essential reset for mobile scaling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at center, rgba(217, 70, 239, 0.05) 0%, transparent 50%);
+            padding: 20px; /* Prevents edge-touching on small phones */
+        }
+
+        .labs-container {
+            text-align: center;
+            /* Fluid padding that shrinks on mobile */
+            padding: clamp(30px, 6vw, 50px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(217, 70, 239, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1 {
+            /* Fluid typography: shrinks dynamically on mobile */
+            font-size: clamp(2rem, 8vw, 3rem);
+            color: white;
+            letter-spacing: clamp(2px, 2vw, 5px);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px var(--primary-glow);
+            line-height: 1.2;
+        }
+
+        h1 span { color: var(--ai-accent); }
+
+        .sys-status {
+            font-family: var(--font-mono);
+            color: var(--ai-accent);
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        p { 
+            color: #94a3b8; 
+            font-size: clamp(0.95rem, 3vw, 1.1rem); 
+            line-height: 1.6; 
+            margin-bottom: 40px; 
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 25px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-family: var(--font-mono);
+            font-weight: bold;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: 280px; /* Keeps button from getting too wide on desktop while allowing full width on mobile */
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="labs-container">
+        <h1>A2BSEC <span>// LABS</span></h1>
+        <div class="sys-status">[ ENVIRONMENT_INITIALIZING ]</div>
+        
+        <p>Welcome to the A2BSEC Research Labs. This sector is currently under active development. Advanced LLM security tools, custom MCP exploit frameworks, and experimental offensive vectors will be deployed here shortly.</p>
+        
+        <a href="https://a2bsec.com/" class="back-btn"><- Return to Main Node</a>
+    </div>
+
+</body>
+</html>
