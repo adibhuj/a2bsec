@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A2BSEC | Professional Security Services & Training</title>
+    <style>
+        /* --- Core Theme & Reset: Light SaaS Minimalist & White Background --- */
+        :root {
+            --bg-dark: #f8fafc; 
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            
+            --primary: #0284c7;
+            --primary-glow: rgba(2, 132, 199, 0.2);
+            --secondary: #2563eb;
+            --violet-base: #7c3aed;
+            --ai-accent: #c026d3; 
+            --teal-accent: #0d9488; 
+            --orange-accent: #d97706; 
+            --purple-accent: #9333ea; 
+            --training-accent: #e11d48;
+            
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --card-glass: #ffffff;
+            --border-glass: rgba(124, 58, 237, 0.12);
+            
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* --- Animated Grid & Lively Background Elements --- */
+        body::before {
+            content: ''; position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, 0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -3; pointer-events: none;
+            animation: grid-drift 25s linear infinite;
+        }
+
+        @keyframes grid-drift {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* Floating Lively Background Nodes & Particles */
+        .bg-particles {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; pointer-events: none; overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, var(--violet-base), var(--primary));
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float-particle 12s infinite ease-in-out alternate;
+        }
+
+        .particle-1 { width: 180px; height: 180px; top: 10%; left: 5%; animation-duration: 14s; }
+        .particle-2 { width: 250px; height: 250px; bottom: 15%; right: 8%; animation-duration: 18s; background: linear-gradient(135deg, var(--teal-accent), var(--secondary)); }
+        .particle-3 { width: 120px; height: 120px; top: 50%; left: 80%; animation-duration: 10s; background: linear-gradient(135deg, var(--ai-accent), var(--violet-base)); }
+
+        @keyframes float-particle {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -40px) scale(1.15); }
+        }
+
+        /* --- Header / Navigation with Cool Animated Logo --- */
+        header {
+            position: fixed; top: 0; width: 100%;
+            padding: 16px 6%; display: flex;
+            justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon-wrap {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            animation: logo-3d-spin 8s ease-in-out infinite alternate;
+        }
+
+        .logo-icon-wrap svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(124, 58, 237, 0.4));
+            animation: logo-glow-pulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logo-3d-spin {
+            0% { transform: rotateX(0deg) rotateY(0deg) scale(1); }
+            50% { transform: rotateX(10deg) rotateY(-15deg) scale(1.08); }
+            100% { transform: rotateX(0deg) rotateY(0deg) scale(1); }
+        }
+
+        @keyframes logo-glow-pulse {
+            0% { filter: drop-shadow(0 4px 8px rgba(124, 58, 237, 0.3)); }
+            100% { filter: drop-shadow(0 6px 18px rgba(2, 132, 199, 0.6)); }
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: #0f172a;
+            font-family: var(--font-main);
+        }
+
+        .logo-text span {
+            color: var(--violet-base);
+        }
+
+        nav ul { display: flex; list-style: none; gap: 28px; align-items: center; flex-wrap: wrap; justify-content: center; }
+        nav a {
+            text-decoration: none; color: var(--text-main); font-size: 0.85rem;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
+            transition: 0.3s ease; position: relative;
+        }
+        nav a:hover { color: var(--violet-base); }
+
+        /* --- Scroll Reveal Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 120px 20px 60px; position: relative; overflow: hidden;
+            width: 100%; box-sizing: border-box;
+        }
+
+        /* Advanced Dynamic Hero Logo Animation Showcase */
+        .iso-hero-graphic {
+            width: 160px; height: 160px; margin-bottom: 30px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: hero-logo-complex 6s ease-in-out infinite alternate;
+        }
+
+        .iso-hero-graphic svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 20px 45px rgba(124, 58, 237, 0.35));
+            animation: hero-svg-pulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes hero-logo-complex {
+            0% { transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1); }
+            50% { transform: translateY(-16px) rotateX(12deg) rotateY(-12deg) scale(1.06); }
+            100% { transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1); }
+        }
+
+        @keyframes hero-svg-pulse {
+            0% { filter: drop-shadow(0 15px 30px rgba(124, 58, 237, 0.3)); }
+            100% { filter: drop-shadow(0 25px 50px rgba(2, 132, 199, 0.55)); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            letter-spacing: clamp(3px, 1.5vw, 10px);
+            margin-bottom: 25px; color: var(--text-main); font-weight: 900;
+            line-height: 1.1;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--violet-base), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .hero p.tagline {
+            font-size: clamp(1rem, 3.5vw, 1.35rem); color: var(--text-muted);
+            max-width: 680px; margin-bottom: 40px; font-weight: 500;
+            opacity: 0; animation: fade-in 1s ease-in forwards 1.5s; padding: 0 15px;
+        }
+
+        @keyframes fade-in { to { opacity: 1; } }
+
+        .cta-btn {
+            text-decoration: none; padding: 16px 36px;
+            background: var(--violet-base); color: white; font-weight: 700; font-size: 0.95rem; letter-spacing: 2px;
+            border-radius: 8px; border: 1px solid var(--violet-base);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); text-transform: uppercase;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25);
+            opacity: 0;
+            animation: fade-in 1s ease-in forwards 2s, btn-pulse 3s infinite alternate 2.5s;
+        }
+        .cta-btn:hover { background: #6d28d9; transform: translateY(-4px); box-shadow: 0 12px 30px rgba(124, 58, 237, 0.35); animation: none; }
+
+        @keyframes btn-pulse {
+            0% { box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25); }
+            100% { box-shadow: 0 8px 35px rgba(124, 58, 237, 0.45); }
+        }
+
+        /* --- Sections Shared Layout --- */
+        .section-container { padding: 110px 6%; position: relative; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .section-title {
+            text-align: center; font-size: clamp(2.2rem, 4.5vw, 3.2rem); letter-spacing: 4px;
+            text-transform: uppercase; margin-bottom: 60px; color: var(--text-main); font-weight: 800;
+        }
+
+        /* --- Modern SaaS Minimalist Grid & Cards --- */
+        .grid-layout {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px; width: 100%;
+        }
+
+        .service-card {
+            background: #ffffff; 
+            border: 1px solid rgba(0, 0, 0, 0.06); 
+            border-radius: 16px;
+            padding: 40px 32px; 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--violet-base); opacity: 0.8; transition: 0.4s;
+        }
+        .service-card:hover { 
+            transform: translateY(-8px); 
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 20px rgba(124, 58, 237, 0.08);
+        }
+
+        .icon-container { width: 56px; height: 56px; margin-bottom: 22px; transition: 0.4s; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; background: #f8fafc; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.05); }
+        .icon-container svg { width: 28px; height: 28px; transition: 0.3s; }
+
+        .service-card:hover .icon-container { transform: scale(1.1); border-color: currentColor; background: #ffffff; }
+
+        .service-card h3 { font-size: 1.25rem; margin-bottom: 14px; color: var(--text-main); letter-spacing: 0.5px; font-weight: 700; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; }
+        .service-card ul { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; padding-left: 18px; margin-top: 10px; }
+
+        /* Accent Color Assignments for Cards */
+        .sc-ai::before { background: var(--ai-accent); }
+        .sc-ai .icon-container { color: var(--ai-accent); }
+
+        .sc-teal::before { background: var(--teal-accent); }
+        .sc-teal .icon-container { color: var(--teal-accent); }
+
+        .sc-orange::before { background: var(--orange-accent); }
+        .sc-orange .icon-container { color: var(--orange-accent); }
+
+        .sc-purple::before { background: var(--purple-accent); }
+        .sc-purple .icon-container { color: var(--purple-accent); }
+
+        .sc-cyan::before { background: var(--primary); }
+        .sc-cyan .icon-container { color: var(--primary); }
+        
+        .sc-blue::before { background: var(--secondary); }
+        .sc-blue .icon-container { color: var(--secondary); }
+
+        /* --- Training Section Specifics --- */
+        #training { background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.02), transparent); }
+        .audience-badge {
+            display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 35px;
+        }
+        .audience-badge span {
+            background: rgba(225, 29, 72, 0.08); border: 1px solid rgba(225, 29, 72, 0.2); color: var(--training-accent);
+            padding: 8px 18px; border-radius: 20px; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase;
+            animation: float-badge 4s ease-in-out infinite; font-weight: 600;
+        }
+        .audience-badge span:nth-child(2) { animation-delay: 1.2s; }
+        .audience-badge span:nth-child(3) { animation-delay: 2.4s; }
+        
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 10px rgba(225, 29, 72, 0.05); }
+            50% { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(225, 29, 72, 0.15); }
+        }
+
+        .sc-training::before { background: var(--training-accent); }
+        .sc-training .icon-container { color: var(--training-accent); }
+        .sc-training h3 { font-size: clamp(1.3rem, 3.5vw, 1.6rem); }
+
+        /* --- Labs Section --- */
+        .labs-large-section {
+            padding: 120px 6%; position: relative; text-align: center;
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.06); border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        
+        .labs-large-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.06) 0%, transparent 65%);
+            animation: pulse-glow 5s ease-in-out infinite alternate;
+            z-index: 1; pointer-events: none;
+        }
+        @keyframes pulse-glow {
+            0% { opacity: 0.4; transform: scale(0.92); }
+            100% { opacity: 0.9; transform: scale(1.08); }
+        }
+
+        .labs-content { position: relative; z-index: 2; width: 100%; }
+        .labs-content h2 {
+            font-size: clamp(2.4rem, 5.5vw, 3.8rem); color: var(--text-main); text-transform: uppercase; letter-spacing: 4px;
+            margin-bottom: 25px; font-weight: 800;
+        }
+
+        /* --- Contact Section --- */
+        .contact-section { padding: 90px 6%; text-align: center; background: #f1f5f9; }
+        .contact-card {
+            display: inline-block; padding: 50px 30px; width: 100%; max-width: 620px;
+            border: 1px solid rgba(0, 0, 0, 0.06); border-radius: 20px;
+            background: #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05); transition: 0.4s; box-sizing: border-box;
+        }
+        .contact-card h3 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); color: var(--text-main); margin-bottom: 15px; letter-spacing: 1.5px; font-weight: 700; }
+        .contact-card p { color: var(--text-muted); margin-bottom: 30px; font-size: 1rem; }
+        
+        .email-link {
+            font-family: var(--font-mono); font-size: clamp(0.9rem, 2.8vw, 1.15rem); color: #ffffff;
+            text-decoration: none; font-weight: bold; letter-spacing: 1px;
+            padding: 15px 28px; border-radius: 10px; display: inline-block;
+            background: var(--violet-base); box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
+            word-break: break-all; transition: all 0.3s ease;
+        }
+        .email-link:hover { transform: scale(1.04); background: #6d28d9; box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35); }
+
+        .location-container {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            color: var(--text-muted); margin-top: 30px; font-size: 0.95rem; font-family: var(--font-mono);
+        }
+        .location-container svg { 
+            width: 20px; height: 20px; color: var(--violet-base);
+            animation: bounce-pin 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce-pin {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        footer {
+            text-align: center; padding: 35px 20px; color: var(--text-muted);
+            border-top: 1px solid rgba(0, 0, 0, 0.06); background: #ffffff;
+            font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 2px;
+        }
+
+        /* --- Mobile Overrides --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 14px; position: relative; padding: 18px; }
+            nav ul { gap: 14px; }
+            .hero { padding-top: 40px; min-height: 75vh; }
+            .section-container { padding: 70px 5%; }
+            .service-card { padding: 30px 22px; }
+            .audience-badge span { margin-bottom: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Lively Particles -->
+    <div class="bg-particles">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+    </div>
+
+    <!-- Header / Navigation with Cool Animated Logo -->
+    <header>
+        <a href="#" class="logo-container">
+            <div class="logo-icon-wrap">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 8L88 29.5V70.5L50 92L12 70.5V29.5L50 8Z" fill="#5b21b6" fill-opacity="0.15" stroke="#7c3aed" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M50 8V50L88 70.5" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M50 50L12 70.5" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M50 32L63 38V49C63 57 58 63 50 67C42 63 37 57 37 49V38L50 32Z" fill="#0d9488" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+                    <circle cx="50" cy="47" r="4.5" fill="#ffffff"/>
+                </svg>
+            </div>
+            <div class="logo-text">A2B<span>SEC</span></div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Advanced Dynamic Animated Hero Logo -->
+        <div class="iso-hero-graphic">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 8L88 29.5V70.5L50 92L12 70.5V29.5L50 8Z" fill="#7c3aed" fill-opacity="0.1" stroke="#7c3aed" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M50 8V50L88 70.5" stroke="#0284c7" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M50 50L12 70.5" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M50 32L63 38V49C63 57 58 63 50 67C42 63 37 57 37 49V38L50 32Z" fill="#0d9488" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="50" cy="47" r="5" fill="#ffffff"/>
+            </svg>
+        </div>
+        <h1><span>A2B</span>SEC</h1>
+        <p class="tagline">We expose vulnerabilities before entities exploit them.</p>
+        <div class="hero-actions">
+            <a href="#services" class="cta-btn" style="opacity: 1;">Our Services</a>
+        </div>
+    </section>
+
+    <!-- Professional Services Section -->
+    <section id="services" class="section-container">
+        <h2 class="section-title reveal">Core Competencies</h2>
+        <div class="grid-layout">
+
+            <!-- WebApp Pentesting -->
+            <div class="service-card sc-orange reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                </div>
+                <h3>WebApp & Thick Client Pentesting</h3>
+                <p>Deep-dive analysis of web and thick client software. Rigorous simulated attacks uncovering complex injection vectors and logic vulnerabilities.</p>
+            </div>
+
+            <!-- API Security -->
+            <div class="service-card sc-cyan reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="15" y1="4" x2="9" y2="20"></line></svg>
+                </div>
+                <h3>API Security Audit</h3>
+                <p>Comprehensive inspection of endpoints to guarantee data integrity and prevent unauthorized access or data leaks.</p>
+            </div>
+
+            <!-- Mobile Pentesting -->
+            <div class="service-card sc-blue reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                </div>
+                <h3>Mobile Application Pentesting</h3>
+                <p>Static (SAST) and dynamic (DAST) analysis of mobile applications to expose client-side risks, insecure data storage, and weak cryptography.</p>
+            </div>
+
+            <!-- AI / LLM & MCP -->
+            <div class="service-card sc-ai reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                </div>
+                <h3>AI / LLM & MCP Security</h3>
+                <p>Securing neural networks and agentic workflows. Defending against prompt injections, data poisoning, and model context protocol exploits.</p>
+            </div>
+
+            <!-- DevSecOps Process -->
+            <div class="service-card sc-teal reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"></path></svg>
+                </div>
+                <h3>DevSecOps Integration</h3>
+                <p>Seamlessly embedding security into CI/CD pipelines. Shifting left with automated scanning to secure codebases continuously before deployment.</p>
+            </div>
+
+            <!-- Infrastructure & Network -->
+            <div class="service-card sc-purple reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </div>
+                <h3>Network & Infrastructure</h3>
+                <p>Full-spectrum network auditing, Active Directory analysis, and evaluating zero-trust perimeters against advanced persistent threats.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Training Services Section -->
+    <section id="training" class="section-container">
+        <h2 class="section-title reveal">Training Services</h2>
+        
+        <div class="audience-badge reveal">
+            <span>For Students</span>
+            <span>For Developers</span>
+            <span>For Security Consultants</span>
+        </div>
+
+        <p class="reveal" style="text-align: center; color: var(--text-muted); max-width: 800px; margin: 0 auto 50px; font-size: 1.05rem;">
+            Empowering the next generation of defenders through structured, hands-on syllabus execution bridging theoretical knowledge and modern cyber vectors.
+        </p>
+
+        <div class="grid-layout">
+            
+            <!-- Training Module 1 -->
+            <div class="service-card sc-training reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                </div>
+                <h3>Offensive Security</h3>
+                <ul>
+                    <li>Web Application Penetration Testing</li>
+                    <li>API Exploitation</li>
+                    <li>Android Mobile Security Assessment</li>
+                    <li>Core Network Pentesting Tactics</li>
+                </ul>
+            </div>
+
+            <!-- Training Module 2 -->
+            <div class="service-card sc-training reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <h3>DevSecOps & Code Analysis</h3>
+                <ul>
+                    <li>Secure Threat Modelling Architectures</li>
+                    <li>Static Application Security Testing (SAST)</li>
+                    <li>Software Composition Analysis (SCA)</li>
+                    <li>CI/CD Security Gate Implementation</li>
+                </ul>
+            </div>
+
+            <!-- Training Module 3 -->
+            <div class="service-card sc-training reveal">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h3>Advanced Cyber Frontiers</h3>
+                <ul>
+                    <li>AI & Machine Learning Penetration Testing</li>
+                    <li>Large Language Model (LLM) Attacks</li>
+                    <li>Model Context Protocol (MCP) Hardening</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Large Dedicated Labs Section -->
+    <section id="labs" class="labs-large-section">
+        <div class="labs-content reveal">
+            <h2>Explore Our Labs</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; font-size: 1.05rem;">Access our testing environments, custom MCP exploit frameworks, and experimental offensive research vectors.</p>
+            <a href="labs.html" class="cta-btn" style="opacity: 1;">Enter The Lab</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-card reveal">
+            <h3>Establish Connection</h3>
+            <p>Ready to secure your corporate infrastructure or upskill your security team?</p>
+            
+            <a href="mailto:lets.connect@a2bsec.com" class="email-link">lets.connect@a2bsec.com</a>
+            
+            <div class="location-container">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>[ PUNE, INDIA ]</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 A2BSEC | ALL RIGHTS RESERVED</p>
+    </footer>
+
+    <!-- Intersection Observer Script for Reveal Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -40px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach((entry, index) => {
+                    if (!entry.isIntersecting) return;
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, (index % 3) * 60);
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
