@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A2BSEC | Labs & Research</title>
+    <style>
+        :root {
+            --bg-dark: #f8fafc; 
+            --bg-surface: #ffffff;
+            --primary: #0284c7;
+            --violet-base: #7c3aed;
+            --ai-accent: #c026d3; 
+            --teal-accent: #0d9488; 
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Animated Grid & Lively Background Elements */
+        body::before {
+            content: ''; position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, 0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -3; pointer-events: none;
+            animation: grid-drift 25s linear infinite;
+        }
+
+        @keyframes grid-drift {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        .bg-particles {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; pointer-events: none; overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, var(--violet-base), var(--primary));
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float-particle 12s infinite ease-in-out alternate;
+        }
+
+        .particle-1 { width: 180px; height: 180px; top: 10%; left: 5%; animation-duration: 14s; }
+        .particle-2 { width: 250px; height: 250px; bottom: 15%; right: 8%; animation-duration: 18s; background: linear-gradient(135deg, var(--teal-accent), #2563eb); }
+
+        @keyframes float-particle {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -40px) scale(1.15); }
+        }
+
+        /* Labs Card Container */
+        .labs-container {
+            text-align: center;
+            padding: clamp(35px, 6vw, 55px);
+            border: 1px solid rgba(124, 58, 237, 0.15);
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .labs-container::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--violet-base), var(--primary));
+        }
+
+        /* Cool Animated Isometric Logo Graphic */
+        .iso-labs-graphic {
+            width: 100px; height: 100px; margin: 0 auto 25px;
+            position: relative;
+            animation: iso-complex-float 5s ease-in-out infinite alternate;
+            transform-style: preserve-3d;
+        }
+
+        .iso-labs-graphic svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 12px 25px rgba(124, 58, 237, 0.3));
+            animation: logo-glow-pulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes iso-complex-float {
+            0% { transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1); }
+            50% { transform: translateY(-10px) rotateX(8deg) rotateY(-8deg) scale(1.05); }
+            100% { transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1); }
+        }
+
+        @keyframes logo-glow-pulse {
+            0% { filter: drop-shadow(0 8px 15px rgba(124, 58, 237, 0.2)); }
+            100% { filter: drop-shadow(0 16px 30px rgba(2, 132, 199, 0.45)); }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            color: var(--text-main);
+            letter-spacing: clamp(2px, 1.5vw, 4px);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h1 span { 
+            background: linear-gradient(135deg, var(--violet-base), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+
+        p { 
+            color: var(--text-muted); 
+            font-size: clamp(0.95rem, 3vw, 1.1rem); 
+            line-height: 1.7; 
+            margin-bottom: 40px; 
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 30px;
+            background: var(--violet-base);
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: bold;
+            font-size: clamp(0.8rem, 3vw, 0.95rem);
+            letter-spacing: 1.5px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: 260px;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+        }
+
+        .back-btn:hover {
+            background: #6d28d9;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(124, 58, 237, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background Particles -->
+    <div class="bg-particles">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+    </div>
+
+    <div class="labs-container">
+        <!-- Animated Isometric Shield Cube Logo Graphic -->
+        <div class="iso-labs-graphic">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 8L88 29.5V70.5L50 92L12 70.5V29.5L50 8Z" fill="#7c3aed" fill-opacity="0.1" stroke="#7c3aed" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M50 8V50L88 70.5" stroke="#0284c7" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M50 50L12 70.5" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M50 32L63 38V49C63 57 58 63 50 67C42 63 37 57 37 49V38L50 32Z" fill="#0d9488" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="50" cy="47" r="5" fill="#ffffff"/>
+            </svg>
+        </div>
+
+        <h1>A2BSEC <span>// LABS</span></h1>
+        
+        <p>Welcome to the A2BSEC Research Labs. This sector is currently under active development. Advanced LLM security tools, custom MCP exploit frameworks, and experimental offensive vectors will be deployed here shortly.</p>
+        
+        <a href="https://a2bsec.com/" class="back-btn">Back to Home</a>
+    </div>
+
+</body>
+</html>
